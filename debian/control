@@ -1,9 +1,9 @@
 Source: hping3
 Section: net
-Priority: optional
-Maintainer: Vincent Tantardini <vince@kerneled.org>
-Build-Depends: debhelper (>= 4.0.0), libpcap-dev, tcl8.4-dev, dpatch
-Standards-Version: 3.6.1
+Priority: extra
+Maintainer: Romain Francoise <rfrancoise@debian.org>
+Build-Depends: debhelper (>= 4.0.0), libpcap0.8-dev, tcl8.4-dev, dpatch (>= 2.0.9)
+Standards-Version: 3.6.1.0
 
 Package: hping3
 Architecture: any
@@ -19,5 +19,4 @@ Description: Active Network Smashing Tool
  operating systems, audit TCP/IP stacks, etc.  hping3 is scriptable
  using the TCL language.
  .
- Author: Salvatore Sanfilippo <antirez@invece.org>
- Homepage: http://wiki.hping.org/
+ Homepage: http://www.hping.org/

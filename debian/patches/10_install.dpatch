@@ -1,8 +1,8 @@
 #! /bin/sh -e
-## Makefilein.dpatch by Vincent Tantardini <vince@kerneled.net>
+## 10_install.dpatch by Romain Francoise <rfrancoise@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Adjust upstream Makefile.in for Debian compilation.
 
 if [ $# -lt 1 ]; then
     echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
@@ -23,9 +23,9 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/vince/debian/hping/hping3-alpha-2/Makefile.in hping3-alpha-2/Makefile.in
---- home/vince/debian/hping/hping3-alpha-2/Makefile.in	2004-10-11 00:22:53.000000000 +0200
-+++ hping3-alpha-2/Makefile.in	2004-10-11 00:23:30.000000000 +0200
+diff -urNad hping3-3.a2.ds1/Makefile.in /tmp/dpep.owSWqK/hping3-3.a2.ds1/Makefile.in
+--- hping3-3.a2.ds1/Makefile.in	2004-04-10 01:38:56.000000000 +0200
++++ /tmp/dpep.owSWqK/hping3-3.a2.ds1/Makefile.in	2005-03-12 11:48:30.927797728 +0100
 @@ -50,14 +50,14 @@
  	$(RANLIB) $@
  
@@ -43,7 +43,7 @@ diff -urNad /home/vince/debian/hping/hping3-alpha-2/Makefile.in hping3-alpha-2/M
  
  byteorder.h:
  	./configure
-@@ -72,17 +72,17 @@
+@@ -72,17 +72,7 @@
  	rm -rf hping3 *.o byteorder byteorder.h systype.h Makefile libars.a .depend
  
  install: hping3
@@ -58,17 +58,7 @@ diff -urNad /home/vince/debian/hping/hping3-alpha-2/Makefile.in hping3-alpha-2/M
 -		echo "@@@@@@ WARNING @@@@@@"; \
 -		echo "Can't install the man page: ${INSTALL_MANPATH}/man8 does not exist"; \
 -	fi
-+	cp -f hping3 $(DESTDIR)/usr/sbin/
-+	chmod 755 $(DESTDIR)/usr/sbin/hping3
-+	#ln -s /usr/sbin/hping3 /usr/sbin/hping
-+	#ln -s /usr/sbin/hping3 /usr/sbin/hping2
-+	#@if [ -d ${INSTALL_MANPATH}/man8 ]; then \
-+	#	cp ./docs/hping3.8 ${INSTALL_MANPATH}/man8; \
-+	#	chmod 644 ${INSTALL_MANPATH}/man8/hping3.8; \
-+	#else \
-+	#	echo "@@@@@@ WARNING @@@@@@"; \
-+	#	echo "Can't install the man page: ${INSTALL_MANPATH}/man8 does not exist"; \
-+	#fi
++	install -m 0755 hping3 $(DESTDIR)/usr/sbin/
  
  strip: hping3
  	@ls -l ./hping3

@@ -1,3 +1,38 @@
+hping3 (3.a2.ds1-1) unstable; urgency=low
+
+  * New maintainer.
+  * Repackaged as 3.a2.ds1 to remove non-free RFC texts.
+  * debian/control:
+    + Build-Depend on libpcap0.8-dev, dpatch (>= 2.0.9).
+    + Change priority to extra.
+    + Slightly reword long description.
+    + Update maintainer contact info.
+  * debian/copyright: Update maintainer contact info.
+  * debian/rules:
+    + Fix dpatch integration.
+    + Ship hping3 TCL scripts as examples (and forcibly leave them
+      uncompressed).
+    + Various cleanups.
+  * debian/patches/10_install.dpatch: New patch based on previous
+    "Makefilein.dpatch".
+  * debian/patches/20_libpcap0.8.dpatch: New patch for libpcap0.8
+    compilation.
+  * debian/patches/30_bytesex.dpatch: New patch stolen from my hping2
+    package to make bytesex.h use endian.h instead of hardcoding byte
+    orders; many thanks to Peter De Schrijver who provided a similar patch
+    (closes: #283038).
+  * debian/patches/40_spelling.dpatch: New patch stolen from my hping2
+    package to fix various spelling errors in hping.
+  * debian/patches/50_personality.dpatch: New patch, change all
+    occurrences of "hping2" to "hping3" in help messages and in the man
+    page.  Also say "hping3" instead of "hping" since the latter is really
+    hping2 in Debian.
+  * debian/patches/60_version.dpatch: New patch, this is really version
+    alpha-2 so fix release.h accordingly.
+  * debian/patches/00list: New file.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 12 Mar 2005 14:15:32 +0100
+
 hping3 (3.a2-1) unstable; urgency=low
 
   * Initial Release. (Closes: #267153)

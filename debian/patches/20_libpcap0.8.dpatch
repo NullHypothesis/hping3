@@ -1,0 +1,31 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_libpcap0.8.dpatch by Romain Francoise <rfrancoise@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Various fixes for libpcap0.8 compilation.
+
+@DPATCH@
+diff -urNad hping3-3.a2.ds1/libpcap_stuff.c /tmp/dpep.TIzqI1/hping3-3.a2.ds1/libpcap_stuff.c
+--- hping3-3.a2.ds1/libpcap_stuff.c	2005-03-12 11:53:25.767975208 +0100
++++ /tmp/dpep.TIzqI1/hping3-3.a2.ds1/libpcap_stuff.c	2005-03-12 11:54:29.024358776 +0100
+@@ -17,7 +17,7 @@
+ #include <stdlib.h>
+ #include <sys/ioctl.h>
+ #include <pcap.h>
+-#include <net/bpf.h>
++#include <pcap-bpf.h>
+ 
+ #include "globals.h"
+ 
+diff -urNad hping3-3.a2.ds1/script.c /tmp/dpep.TIzqI1/hping3-3.a2.ds1/script.c
+--- hping3-3.a2.ds1/script.c	2004-05-29 08:48:13.000000000 +0200
++++ /tmp/dpep.TIzqI1/hping3-3.a2.ds1/script.c	2005-03-12 11:54:56.320209176 +0100
+@@ -24,7 +24,7 @@
+ 
+ #include <sys/ioctl.h>
+ #include <pcap.h>
+-#include <net/bpf.h>
++#include <pcap-bpf.h>
+ 
+ #include "release.h"
+ #include "hping2.h"
