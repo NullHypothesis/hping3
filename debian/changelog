@@ -1,0 +1,6 @@
+hping3 (3.a2-1) unstable; urgency=low
+
+  * Initial Release. (Closes: #267153)
+
+ -- Vincent Tantardini <vince@kerneled.org>  Sun, 10 Oct 2004 20:24:03 +0200
+
