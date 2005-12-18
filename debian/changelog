@@ -1,3 +1,13 @@
+hping3 (3.a2.ds1-2) unstable; urgency=low
+
+  * debian/copyright: Update FSF's address.
+  * debian/compat: Switch to compatibility level 5.
+  * debian/control:
+    + Bump Standards-Version to 3.6.2.1, no changes needed.
+    + Build-Depend on debhelper (>= 5.0.0).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 18 Dec 2005 15:14:11 +0100
+
 hping3 (3.a2.ds1-1) unstable; urgency=low
 
   * New maintainer.
