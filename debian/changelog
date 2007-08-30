@@ -1,3 +1,15 @@
+hping3 (3.a2.ds1-4) unstable; urgency=low
+
+  * Convert to quilt for patch management:
+    + debian/control: Build-Depend on quilt (>= 0.40) instead of dpatch.
+    + debian/rules: Include /usr/share/quilt/quilt.make.
+    + Convert all dpatch patches to regular patches.
+
+  * debian/control: Bump Standards-Version to 3.7.2, no changes needed.
+  * debian/rules: Don't ignore errors from make distclean.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Thu, 30 Aug 2007 22:12:04 +0200
+
 hping3 (3.a2.ds1-3) unstable; urgency=low
 
   * debian/control:

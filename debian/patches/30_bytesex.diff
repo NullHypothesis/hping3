@@ -1,13 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 30_bytesex.dpatch by Romain Francoise <rfrancoise@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Endianness fixes.
+Endianness fixes.
 
-@DPATCH@
-diff -urNad hping3-3.a2.ds1/bytesex.h /tmp/dpep.6fhOWO/hping3-3.a2.ds1/bytesex.h
---- hping3-3.a2.ds1/bytesex.h	2003-08-31 19:23:48.000000000 +0200
-+++ /tmp/dpep.6fhOWO/hping3-3.a2.ds1/bytesex.h	2005-03-12 12:44:18.692860080 +0100
+--- hping3-3.a2.ds1.orig/bytesex.h
++++ hping3-3.a2.ds1/bytesex.h
 @@ -7,16 +7,11 @@
  #ifndef ARS_BYTESEX_H
  #define ARS_BYTESEX_H

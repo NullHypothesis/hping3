@@ -1,31 +1,7 @@
-#! /bin/sh -e
-## 10_install.dpatch by Romain Francoise <rfrancoise@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Adjust upstream Makefile.in for Debian compilation.
+Adjust upstream Makefile.in for Debian compilation.
 
-if [ $# -lt 1 ]; then
-    echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
-    exit 1
-fi
-
-[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
-patch_opts="${patch_opts:--f --no-backup-if-mismatch} ${2:+-d $2}"
-
-case "$1" in
-    -patch) patch -p1 ${patch_opts} < $0;;
-    -unpatch) patch -R -p1 ${patch_opts} < $0;;
-    *)
-        echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
-        exit 1;;
-esac
-
-exit 0
-
-@DPATCH@
-diff -urNad hping3-3.a2.ds1/Makefile.in /tmp/dpep.owSWqK/hping3-3.a2.ds1/Makefile.in
---- hping3-3.a2.ds1/Makefile.in	2004-04-10 01:38:56.000000000 +0200
-+++ /tmp/dpep.owSWqK/hping3-3.a2.ds1/Makefile.in	2005-03-12 11:48:30.927797728 +0100
+--- hping3-3.a2.ds1.orig/Makefile.in
++++ hping3-3.a2.ds1/Makefile.in
 @@ -50,14 +50,14 @@
  	$(RANLIB) $@
  

@@ -2,8 +2,8 @@ Source: hping3
 Section: net
 Priority: extra
 Maintainer: Romain Francoise <rfrancoise@debian.org>
-Build-Depends: debhelper (>= 5.0.0), libpcap0.8-dev, tcl8.4-dev, dpatch (>= 2.0.9)
-Standards-Version: 3.7.0
+Build-Depends: debhelper (>= 5.0.0), libpcap0.8-dev, tcl8.4-dev, quilt (>= 0.40)
+Standards-Version: 3.7.2
 
 Package: hping3
 Architecture: any
