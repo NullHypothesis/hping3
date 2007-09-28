@@ -4,6 +4,7 @@ Priority: extra
 Maintainer: Romain Francoise <rfrancoise@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libpcap0.8-dev, tcl8.4-dev, quilt (>= 0.40)
 Standards-Version: 3.7.2
+Homepage: http://www.hping.org/
 
 Package: hping3
 Architecture: any
@@ -18,5 +19,3 @@ Description: Active Network Smashing Tool
  traceroute-like actions under different protocols, fingerprint remote
  operating systems, audit TCP/IP stacks, etc.  hping3 is scriptable
  using the TCL language.
- .
-  Homepage: http://www.hping.org/
