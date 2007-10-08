@@ -1,3 +1,9 @@
+hping3 (3.a2.ds2-1) unstable; urgency=low
+
+  * debian/control: Add Vcs-Git and Vcs-Browser fields.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 08 Oct 2007 22:38:26 +0200
+
 hping3 (3.a2.ds1-5) unstable; urgency=low
 
   * debian/control: Move upstream URL to the Homepage field.
