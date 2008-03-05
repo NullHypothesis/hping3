@@ -3,7 +3,7 @@ Section: net
 Priority: extra
 Maintainer: Romain Francoise <rfrancoise@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libpcap0.8-dev, tcl8.4-dev, quilt (>= 0.40)
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Homepage: http://www.hping.org/
 Vcs-Browser: http://git.debian.org/?p=users/rfrancoise/hping3.git
 Vcs-Git: git://git.debian.org/git/users/rfrancoise/hping3.git

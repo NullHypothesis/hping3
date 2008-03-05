@@ -1,3 +1,10 @@
+hping3 (3.a2.ds2-2) UNRELEASED; urgency=low
+
+  * debian/control:
+    + Bump Standards-Version to 3.7.3, no changes needed.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Wed, 05 Mar 2008 11:40:19 +0100
+
 hping3 (3.a2.ds2-1) unstable; urgency=low
 
   * debian/control: Add Vcs-Git and Vcs-Browser fields.
