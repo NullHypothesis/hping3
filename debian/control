@@ -20,4 +20,4 @@ Description: Active Network Smashing Tool
  performance using different protocols, do path MTU discovery, perform
  traceroute-like actions under different protocols, fingerprint remote
  operating systems, audit TCP/IP stacks, etc.  hping3 is scriptable
- using the TCL language.
+ using the Tcl language.
