@@ -3,8 +3,12 @@ hping3 (3.a2.ds2-2) unstable; urgency=low
   * debian/control:
     + Use "Tcl", not "TCL" in long description.
     + Bump Standards-Version to 3.7.3, no changes needed.
+  * debian/patches/70_tcl.diff: New patch, change libtcl detection logic
+    to use the same version as the default tclsh instead of looking for
+    the newest installed library.
+  * debian/patches/series: Update.
 
- -- Romain Francoise <rfrancoise@debian.org>  Sat, 08 Mar 2008 19:28:24 +0100
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 08 Mar 2008 19:44:14 +0100
 
 hping3 (3.a2.ds2-1) unstable; urgency=low
 
