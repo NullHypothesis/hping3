@@ -1,7 +1,7 @@
 Source: hping3
 Section: net
 Priority: extra
-Maintainer: Romain Francoise <rfrancoise@debian.org>
+Maintainer: Debian QA Group <packages@qa.debian.org>
 Build-Depends: debhelper (>= 5.0.0), libpcap0.8-dev, tcl8.4-dev, quilt (>= 0.40)
 Standards-Version: 3.7.3
 Homepage: http://www.hping.org/
