@@ -1,0 +1,228 @@
+Correct some hyphen used as minus (thanks lintian).
+
+--- a/docs/hping3.8
++++ b/docs/hping3.8
+@@ -165,9 +165,9 @@
+ .I -i --interval
+ Wait
+ the specified number of seconds or micro seconds between sending each packet.
+---interval X set
++\-\-interval X set
+ .I wait
+-to X seconds, --interval uX set
++to X seconds, \-\-interval uX set
+ .I wait
+ to X micro seconds.
+ The default is to wait
+@@ -178,14 +178,14 @@
+ for more information.
+ .TP
+ .I --fast
+-Alias for -i u10000. Hping will send 10 packets for second.
++Alias for \-i u10000. Hping will send 10 packets for second.
+ .TP
+ .I --faster
+-Alias for -i u1. Faster then --fast ;) (but not as fast as your computer can send packets due to the signal-driven design).
++Alias for \-i u1. Faster then \-\-fast ;) (but not as fast as your computer can send packets due to the signal-driven design).
+ .TP
+ .I --flood
+ Sent packets as fast as possible, without taking care to show incoming replies.
+-This is ways faster than to specify the -i u0 option.
++This is ways faster than to specify the \-i u0 option.
+ .TP
+ .I -n --numeric
+ Numeric output only, No attempt will be made to lookup symbolic names for host addresses.
+@@ -200,7 +200,7 @@
+ hping3 uses the first non-loopback interface.
+ However you are able to force hping3 to use the interface you need using
+ this option. Note: you don't need to specify the whole name, for
+-example -I et will match eth0 ethernet0 myet1 et cetera. If no interfaces
++example \-I et will match eth0 ethernet0 myet1 et cetera. If no interfaces
+ match hping3 will try to use lo.
+ .TP
+ .I -V --verbose
+@@ -236,7 +236,7 @@
+ .TP
+ .I -0 --rawip
+ RAW IP mode, in this mode hping3 will send IP header with data
+-appended with --signature and/or --file, see also --ipproto that
++appended with \-\-signature and/or \-\-file, see also \-\-ipproto that
+ allows you to set the ip protocol field.
+ .TP
+ .I -1 --icmp
+@@ -292,7 +292,7 @@
+ .I signature
+ and dump from
+ .I signature
+-end to packet's end. For example if hping3 --listen TEST reads a packet
++end to packet's end. For example if hping3 \-\-listen TEST reads a packet
+ that contain
+ .B 234-09sdflkjs45-TESThello_world
+ it will display
+@@ -413,10 +413,10 @@
+ .I -C --icmptype type
+ Set icmp type, default is
+ .B ICMP echo request
+-(implies --icmp).
++(implies \-\-icmp).
+ .TP
+ .I -K --icmpcode code
+-Set icmp code, default is 0 (implies --icmp).
++Set icmp code, default is 0 (implies \-\-icmp).
+ .TP
+ .I --icmp-ipver
+ Set IP version of IP header contained into ICMP data, default is 4.
+@@ -438,10 +438,10 @@
+ Set ICMP checksum, for default is the valid checksum.
+ .TP
+ .I --icmp-ts
+-Alias for --icmptype 13 (to send ICMP timestamp requests).
++Alias for \-\-icmptype 13 (to send ICMP timestamp requests).
+ .TP
+ .I --icmp-addr
+-Alias for --icmptype 17 (to send ICMP address mask requests).
++Alias for \-\-icmptype 17 (to send ICMP address mask requests).
+ .SH TCP/UDP RELATED OPTIONS
+ .TP
+ .I -s --baseport source port
+@@ -540,7 +540,7 @@
+ .SH COMMON OPTIONS
+ .TP
+ .I -d --data data size
+-Set packet body size. Warning, using --data 40 hping3 will not generate
++Set packet body size. Warning, using \-\-data 40 hping3 will not generate
+ 0 byte packets but protocol_header+40 bytes. hping3 will display
+ packet size information as first line output, like this:
+ .B HPING www.yahoo.com (ppp0 204.71.200.67): NO FLAGS are set, 40 headers + 40 data bytes
+@@ -594,8 +594,8 @@
+ .B ICMP time to live 0 during transit
+ received. Try
+ .BR "hping3 host --traceroute" .
+-This option implies --bind and --ttl 1. You can override the ttl of 1
+-using the --ttl option. Since 2.0.0 stable it prints RTT information.
++This option implies \-\-bind and \-\-ttl 1. You can override the ttl of 1
++using the \-\-ttl option. Since 2.0.0 stable it prints RTT information.
+ .TP
+ .I --tr-keep-ttl
+ Keep the TTL fixed in traceroute mode, so you can monitor just one hop
+@@ -709,7 +709,7 @@
+ .SH AUTHOR
+ Salvatore Sanfilippo <antirez@invece.org>, with the help of the people mentioned in AUTHORS file and at http://www.hping.org/authors.html
+ .SH BUGS
+-Even using the --end and --safe options to transfer files the final packet
++Even using the \-\-end and \-\-safe options to transfer files the final packet
+ will be padded with 0x00 bytes.
+ .PP
+ Data is read without care about alignment, but alignment is enforced
+--- a/docs/french/hping2-fr.8
++++ b/docs/french/hping2-fr.8
+@@ -170,9 +170,9 @@
+ .I -i --interval
+ Attend le nombre spécifié de secondes ou de micro secondes entre l'envoie de
+ chaque paquet.
+---interval X fixe
++\-\-interval X fixe
+ .I wait
+-à X secondes, --interval uX fixe
++à X secondes, \-\-interval uX fixe
+ .I wait
+ à X micro secondes. Le défaut est d'attendre une seconde entre chaque
+ paquet. En utilisant hping3 pour transférer des fichiers fixer cette option
+@@ -183,16 +183,16 @@
+ pour plus d'informations.
+ .TP
+ .I --fast
+-Alias pour -i u10000. Hping enverra 10 paquets par seconde.
++Alias pour \-i u10000. Hping enverra 10 paquets par seconde.
+ .TP
+ .I --faster
+-Alias pour -i u1. Plus rapide que --fast ;) (mais pas aussi rapide que votre
++Alias pour \-i u1. Plus rapide que \-\-fast ;) (mais pas aussi rapide que votre
+ ordinateur peut envoyer des paquets à cause de la conception basée sur les
+ signaux).
+ .TP
+ .I --flood
+ Envoi les paquets aussi vite que possible sans prendre en compte les réponses
+-de retour. Cette méthode est encore plus rapide que l'option -i u0.
++de retour. Cette méthode est encore plus rapide que l'option \-i u0.
+ .TP
+ .I -n --numeric
+ Sortie numérique seulement, aucune tentative ne sera faite pour chercher les
+@@ -208,7 +208,7 @@
+ de routage par défaut hping3 utilise la première interface non loopback.
+ Quoi qu'il en soit vous avez la possibilité de forcer hping3 à utiliser
+ l'interface dont vous avez besoin en utilisant cette option. Note : vous
+-n'avez pas besoin de spécifier le nom complet, par exemple -I et va
++n'avez pas besoin de spécifier le nom complet, par exemple \-I et va
+ correspondre à eth0 ethernet0 myet1 et cetera. Si aucune interface ne
+ correspond hping3 essayera d'utiliser lo.
+ .TP
+@@ -249,7 +249,7 @@
+ .TP
+ .I -0 --rawip
+ Mode RAW IP, dans ce mode hping3 enverra une entête IP avec les données
+-ajoutées avec --signature et/ou --file, voir également --ipproto qui vous
++ajoutées avec \-\-signature et/ou \-\-file, voir également \-\-ipproto qui vous
+ autorise à fixer le champ protocole IP.
+ .TP
+ .I -1 --icmp
+@@ -312,7 +312,7 @@
+ .I signature
+ et exporte de la fin de la
+ .I signature
+-à la fin du paquet. Par exemple si hping3 --listen TEST lit un paquet qui
++à la fin du paquet. Par exemple si hping3 \-\-listen TEST lit un paquet qui
+ contient
+ .B 234-09sdflkjs45-TESThello_world
+ il affichera
+@@ -446,7 +446,7 @@
+ .BR "ICMP echo request" .
+ .TP
+ .I -K --icmpcode code
+-Fixe le code ICMP, le défaut est 0 (implique --icmp).
++Fixe le code ICMP, le défaut est 0 (implique \-\-icmp).
+ .TP
+ .I --icmp-ipver
+ Fixe la version IP de l'entête IP contenue dans les données ICMP, le défaut
+@@ -472,10 +472,10 @@
+ Fixe la somme de contrôle ICMP, le défaut est la somme de contrôle valide.
+ .TP
+ .I --icmp-ts
+-Alias pour --icmptype 13 (pour envoyer des requêtes ICMP timestamp).
++Alias pour \-\-icmptype 13 (pour envoyer des requêtes ICMP timestamp).
+ .TP
+ .I --icmp-addr
+-Alias pour --icmptype 17 (pour envoyer des requêtes ICMP masque réseau).
++Alias pour \-\-icmptype 17 (pour envoyer des requêtes ICMP masque réseau).
+ .SH OPTIONS TCP/UDP
+ .TP
+ .I -s --baseport source port
+@@ -579,7 +579,7 @@
+ .SH OPTIONS COMMUNES
+ .TP
+ .I -d --data data size
+-Fixe la taille du corps du paquet. Attention, en utilisant --data 40 hping3
++Fixe la taille du corps du paquet. Attention, en utilisant \-\-data 40 hping3
+ ne générera pas des paquets de 0 octet mais de entête_de_protocole+40
+ octets. hping3 affichera en information la taille des paquets comme première
+ ligne de sortie, comme ceci :
+@@ -638,8 +638,8 @@
+ .B ICMP time to live 0 during transit
+ reçu. Essayez
+ .BR "hping3 host --traceroute" .
+-Cette option implique --bind et --ttl 1. Vous pouvez l'emporter sur le ttl à
+-1 en utilisant l'option --ttl. Depuis 2.0.0 stable il affiche les
++Cette option implique \-\-bind et \-\-ttl 1. Vous pouvez l'emporter sur le ttl à
++1 en utilisant l'option \-\-ttl. Depuis 2.0.0 stable il affiche les
+ informations de RTT.
+ .I --tr-keep-ttl
+ garde le ttl fixe en mode traceroute, ainsi vous pouvez contrôler simplement
+@@ -758,7 +758,7 @@
+ Salvatore Sanfilippo <antirez@invece.org>, avec l'aide des personnes
+ mentionnées dans le fichier AUTHORS et sur http://www.hping.org/authors.html
+ .SH BOGUES
+-Même en utilisant les options --end et --safe pour transférer des fichiers,
++Même en utilisant les options \-\-end et \-\-safe pour transférer des fichiers,
+ le paquet final sera rembourré avec des octets 0x00.
+ .PP
+ Les données sont lues sans tenir compte de l'alignement, mais l'alignement

@@ -1,8 +1,9 @@
 This package was debianized by Vincent Tantardini <vince@kerneled.net> on
 Sun, 10 Oct 2004 20:24:03 +0200.
-It is now maintained by Romain Francoise <rfrancoise@debian.org>.
+Previously maintained by Romain Francoise <rfrancoise@debian.org> (until 2009)
+and now by Guillaume Delacour <gui@iroqwa.org>
 
-It was downloaded from http://wiki.hping.org/101
+It was downloaded from http://www.hping.org/download.php
 
 Copyright:
 
@@ -31,4 +32,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 On Debian systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL'.
+Public License can be found in `/usr/share/common-licenses/GPL-2'.

@@ -49,6 +49,8 @@ install: build
 	dh_installdirs
 
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/hping3/
+	mkdir -p $(CURDIR)/debian/hping3/usr/share/man/fr/man8
+	gzip -9 -c $(CURDIR)/docs/french/hping2-fr.8 > $(CURDIR)/debian/hping3/usr/share/man/fr/man8/hping3.8.gz
 
 
 binary-indep: build install

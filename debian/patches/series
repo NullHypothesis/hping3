@@ -5,3 +5,8 @@
 50_personality.diff
 60_version.diff
 70_tcl.diff
+80_ip_id_field.diff
+90_fr_manpage.diff
+100_hyphen_used_as_minus_sign.diff
+110_dontfrag_offbyone.diff
+120_rtt_icmp_unreachable.diff

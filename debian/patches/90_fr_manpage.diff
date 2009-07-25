@@ -1,0 +1,276 @@
+Use of hping2 fr manpage
+
+--- a/docs/french/hping2-fr.8
++++ b/docs/french/hping2-fr.8
+@@ -1,9 +1,9 @@
+-.TH HPING2 8 "2001 Aug 14"
++.TH HPING3 8 "2001 Aug 14"
+ .\" french translation by Denis Ducamp <Denis.Ducamp@groar.org>
+ .SH NOM
+-hping2 \- envoie des paquets TCP/IP (presque) arbitraires à des systèmes réseaux
++hping3 \- envoie des paquets TCP/IP (presque) arbitraires à des systèmes réseaux
+ .SH RESUME
+-.B hping2
++.B hping3
+ [
+ .B \-hvnqVDzZ012WrfxykQbFSRPAUXYjJBuTG
+ ] [
+@@ -111,16 +111,19 @@
+ ] [
+ .B \-\-rand-source
+ ]
++] [
++.B \-\-beep
++]
+ hostname
+ .br
+ .ad
+ .SH DESCRIPTION
+-hping2 est un outil réseau capable d'envoyer des paquets TCP/IP sur
++hping3 est un outil réseau capable d'envoyer des paquets TCP/IP sur
+ commande et d'afficher les réponses de la cible comme le programme ping le
+-fait avec les réponses ICMP. hping2 traite la fragmentation, les contenus de
++fait avec les réponses ICMP. hping3 traite la fragmentation, les contenus de
+ paquets et les tailles arbitraires, et peut être utilisé dans le but de
+ transférer des fichiers encapsulés dans les protocoles supportés. En
+-utilisant hping2 vous êtes capable d'effectuer au moins les tâches
++utilisant hping3 vous êtes capable d'effectuer au moins les tâches
+ suivantes :
+ 
+  - Tester les règles d'un firewall
+@@ -135,7 +138,7 @@
+  - Beaucoup d'autres.
+ 
+ .I C'est également un bon outil didactique pour apprendre TCP/IP.
+-hping2 est développé et maintenu par antirez@invece.org et est sous la
++hping3 est développé et maintenu par antirez@invece.org et est sous la
+ version 2 de la licence GPL. Le développement est ouvert donc vous pouvez
+ m'envoyer des patches, suggestions et affronts sans inhibition.
+ .SH SITE DE HPING
+@@ -160,9 +163,9 @@
+ .I -c --count count
+ Arrête après avoir envoyé (et reçu)
+ .I count
+-paquets réponse. Après que le dernier paquet a été envoyé hping2 attend
++paquets réponse. Après que le dernier paquet a été envoyé hping3 attend
+ COUNTREACHED_TIMEOUT secondes les réponses du système cible. Vous avez la
+-possibilité de régler COUNTREACHED_TIMEOUT en éditant hping2.h
++possibilité de régler COUNTREACHED_TIMEOUT en éditant hping3.h
+ .TP
+ .I -i --interval
+ Attend le nombre spécifié de secondes ou de micro secondes entre l'envoie de
+@@ -172,11 +175,11 @@
+ à X secondes, --interval uX fixe
+ .I wait
+ à X micro secondes. Le défaut est d'attendre une seconde entre chaque
+-paquet. En utilisant hping2 pour transférer des fichiers fixer cette option
++paquet. En utilisant hping3 pour transférer des fichiers fixer cette option
+ est très important pour augmenter le taux de transfert. Même en utilisant
+-hping2 pour effectuer des scans passifs/avec usurpation d'adresse vous
++hping3 pour effectuer des scans passifs/avec usurpation d'adresse vous
+ devriez fixer cette option, voir
+-.B HPING2-HOWTO
++.B HPING3-HOWTO
+ pour plus d'informations.
+ .TP
+ .I --fast
+@@ -187,6 +190,10 @@
+ ordinateur peut envoyer des paquets à cause de la conception basée sur les
+ signaux).
+ .TP
++.I --flood
++Envoi les paquets aussi vite que possible sans prendre en compte les réponses
++de retour. Cette méthode est encore plus rapide que l'option -i u0.
++.TP
+ .I -n --numeric
+ Sortie numérique seulement, aucune tentative ne sera faite pour chercher les
+ noms symboliques pour les adresses système.
+@@ -196,14 +203,14 @@
+ moment du démarrage et quand c'est fini.
+ .TP
+ .I -I --interface interface name
+-Par défaut sur les systèmes linux et BSD hping2 utilise l'interface de
++Par défaut sur les systèmes linux et BSD hping3 utilise l'interface de
+ routage par défaut. Sur d'autres systèmes ou quand il n'y a pas d'interface
+-de routage par défaut hping2 utilise la première interface non loopback.
+-Quoi qu'il en soit vous avez la possibilité de forcer hping2 à utiliser
++de routage par défaut hping3 utilise la première interface non loopback.
++Quoi qu'il en soit vous avez la possibilité de forcer hping3 à utiliser
+ l'interface dont vous avez besoin en utilisant cette option. Note : vous
+ n'avez pas besoin de spécifier le nom complet, par exemple -I et va
+ correspondre à eth0 ethernet0 myet1 et cetera. Si aucune interface ne
+-correspond hping2 essayera d'utiliser lo.
++correspond hping3 essayera d'utiliser lo.
+ .TP
+ .I -V --verbose
+ Active la sortie verbeuse. Les réponses TCP seront affichées comme suit :
+@@ -213,7 +220,7 @@
+ .TP
+ .I -D --debug
+ Active le mode de débogage, c'est utile quand vous rencontrez quelques
+-problèmes avec hping2. Quand le mode de débogage est activé vous obtiendrez
++problèmes avec hping3. Quand le mode de débogage est activé vous obtiendrez
+ plus d'informations à propos
+ .B de la détection des interfaces, de l'accès au niveau données, du
+ .B réglage des interfaces, des options d'analyse, de la fragmentation, du
+@@ -227,9 +234,13 @@
+ sortant en pressant CTRL+Z une ou deux fois.
+ .TP
+ .I -Z --unbind
+-Dé-lie CTRL+Z ainsi vous serez capable d'arrêter hping2
++Dé-lie CTRL+Z ainsi vous serez capable d'arrêter hping3
++.TP
++.I --beep
++Emet un « bip » pour tous les paquets correspondants reçus (mais pas
++pour les erreurs ICMP).
+ .SH SELECTION DE PROTOCOLE
+-Le protocole par défaut est TCP, par défaut hping2 enverra des entêtes TCP
++Le protocole par défaut est TCP, par défaut hping3 enverra des entêtes TCP
+ sur le port 0 du système cible avec une winsize (ndt : taille de fenêtre) de
+ 64 sans aucun drapeau TCP activé. Souvent c'est la meilleure manière de
+ faire un 'ping caché', utile quand la cible est derrière un firewall qui
+@@ -237,17 +248,17 @@
+ 0 a de bonnes probabilités de ne pas être journalisé.
+ .TP
+ .I -0 --rawip
+-Mode RAW IP, dans ce mode hping2 enverra une entête IP avec les données
++Mode RAW IP, dans ce mode hping3 enverra une entête IP avec les données
+ ajoutées avec --signature et/ou --file, voir également --ipproto qui vous
+ autorise à fixer le champ protocole IP.
+ .TP
+ .I -1 --icmp
+-Mode ICMP, par défaut hping2 enverra un paquet ICMP echo-request, vous
++Mode ICMP, par défaut hping3 enverra un paquet ICMP echo-request, vous
+ pouvez fixer un autre type/code ICMP en utilisant les options
+ .B --icmptype --icmpcode
+ .TP
+ .I -2 --udp
+-Mode UDP, par défaut hping2 enverra des paquets UDP vers le port 0 du
++Mode UDP, par défaut hping3 enverra des paquets UDP vers le port 0 du
+ système cible. Les options réglables des entêtes UDP sont les suivantes :
+ .B --baseport, --destport, --keep.
+ .TP
+@@ -296,12 +307,12 @@
+ détails intéressants.
+ .TP
+ .I -9 --listen signature
+-Mode d'écoute de HPING2, en utilisant cette option hping2 attend les paquets
++Mode d'écoute de HPING3, en utilisant cette option hping3 attend les paquets
+ qui contiennent
+ .I signature
+ et exporte de la fin de la
+ .I signature
+-à la fin du paquet. Par exemple si hping2 --listen TEST lit un paquet qui
++à la fin du paquet. Par exemple si hping3 --listen TEST lit un paquet qui
+ contient
+ .B 234-09sdflkjs45-TESThello_world
+ il affichera
+@@ -314,7 +325,7 @@
+ Quoi qu'il en soit les réponses seront envoyées à l'adresse usurpée, ainsi
+ vous ne serez pas capable de les voir. Afin de voir comment il est possible
+ d'effectuer des scans avec des adresses usurpées/passifs voir le fichier
+-.BR HPING2-HOWTO .
++.BR HPING3-HOWTO .
+ 
+ .TP
+ .I --rand-source
+@@ -359,7 +370,7 @@
+ ou
+ .B --bind
+ Dans le doute essayez
+-.BR "" "`" "hping2 some.host.com -t 1 --traceroute" "'."
++.BR "" "`" "hping3 some.host.com -t 1 --traceroute" "'."
+ .TP
+ .I -N --id
+ Fixe le champ ip->id . La valeur du champ id par défaut est aléatoire mais
+@@ -374,12 +385,12 @@
+ .I -W --winid
+ Le champ id des systèmes Windows* avant Win2k ont un byte ordering (ndt :
+ ordre des
+-octets) différent, si cette option est activée hping2 affichera proprement
++octets) différent, si cette option est activée hping3 affichera proprement
+ les champs id des réponses de ces Windows.
+ .TP
+ .I -r --rel
+ Affiche les incréments du champ id au lieu du champ id. Voir le fichier
+-.B HPING2-HOWTO
++.B HPING3-HOWTO
+ pour plus d'informations. Les incréments ne sont pas calculés comme
+ id[N]-id[N-1] mais en utilisant une compensation de pertes de paquets. Voir
+ le fichier relid.c pour plus d'informations.
+@@ -468,7 +479,7 @@
+ .SH OPTIONS TCP/UDP
+ .TP
+ .I -s --baseport source port
+-hping2 utilise le port source afin de deviner les numéros de séquence des
++hping3 utilise le port source afin de deviner les numéros de séquence des
+ réponses. Il commence avec un numéro de port source de base, et incrémente
+ ce numéro pour chaque paquet envoyé. Quand un paquet est reçu alors le
+ numéro de séquence peut être calculé comme
+@@ -513,7 +524,7 @@
+ d'analyser si les numéros de séquence TCP sont prévisibles. Exemple de
+ sortie :
+ 
+-.B #hping2 win98 --seqnum -p 139 -S -i u1 -I eth0
++.B #hping3 win98 --seqnum -p 139 -S -i u1 -I eth0
+ .nf
+ HPING uaz (eth0 192.168.4.41): S set, 40 headers + 0 data bytes
+ 2361294848 +2361294848
+@@ -568,9 +579,9 @@
+ .SH OPTIONS COMMUNES
+ .TP
+ .I -d --data data size
+-Fixe la taille du corps du paquet. Attention, en utilisant --data 40 hping2
++Fixe la taille du corps du paquet. Attention, en utilisant --data 40 hping3
+ ne générera pas des paquets de 0 octet mais de entête_de_protocole+40
+-octets. hping2 affichera en information la taille des paquets comme première
++octets. hping3 affichera en information la taille des paquets comme première
+ ligne de sortie, comme ceci :
+ .B HPING www.yahoo.com (ppp0 204.71.200.67): NO FLAGS are set, 40 headers + 40 data bytes
+ .TP
+@@ -608,9 +619,9 @@
+ qui suit :
+ .nf
+ .I [host_a]
+-.B # hping2 host_b --udp -p 53 -d 100 --sign signature --safe --file /etc/passwd
++.B # hping3 host_b --udp -p 53 -d 100 --sign signature --safe --file /etc/passwd
+ .I [host_b]
+-.B # hping2 host_a --listen signature --safe --icmp
++.B # hping3 host_a --listen signature --safe --icmp
+ .fi
+ .TP
+ .I -u --end
+@@ -619,14 +630,14 @@
+ cela vous dit quand la fin du fichier a été atteinte. D'ailleurs cela
+ prévient que l'autre côté accepte plus de paquets. S'il vous plaît, pour
+ plus d'informations voir le fichier
+-.BR HPING2-HOWTO .
++.BR HPING3-HOWTO .
+ .TP
+ .I -T --traceroute
+-Mode traceroute. En utilisant cette option hping2 incrémentera le ttl pour
++Mode traceroute. En utilisant cette option hping3 incrémentera le ttl pour
+ chaque paquet
+ .B ICMP time to live 0 during transit
+ reçu. Essayez
+-.BR "hping2 host --traceroute" .
++.BR "hping3 host --traceroute" .
+ Cette option implique --bind et --ttl 1. Vous pouvez l'emporter sur le ttl à
+ 1 en utilisant l'option --ttl. Depuis 2.0.0 stable il affiche les
+ informations de RTT.
+@@ -634,7 +645,7 @@
+ garde le ttl fixe en mode traceroute, ainsi vous pouvez contrôler simplement
+ un noeud sur la route. Par exemple, pour contrôler comment le 5ème noeud
+ change ou comment son RTT change vous pouvez essayer
+-.BR "hping2 host --traceroute --ttl 5 --tr-keep-ttl" .
++.BR "hping3 host --traceroute --ttl 5 --tr-keep-ttl" .
+ .TP
+ .I --tr-stop
+ Si cette option est spécifiée hping quittera dès que le premier paquet qui
+@@ -764,4 +775,4 @@
+ .SH VOIR AUSSI
+ ping(8), traceroute(8), ifconfig(8), nmap(1)
+ .SH TRADUCTEUR
+-Denis Ducamp <Denis.Ducamp@groar.org>
+\ No newline at end of file
++Denis Ducamp <Denis.Ducamp@groar.org>
