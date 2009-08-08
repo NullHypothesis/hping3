@@ -2,7 +2,7 @@ hping3 (3.a2.ds2-5) unstable; urgency=low
 
   * debian/patches/80_ip_id_field.diff: Add description to header.
   * debian/patches/90_fr_manpage.diff:
-    + use hping2 manpage for hping3 (already included in source).
+    + use hping2 fr manpage for hping3 (already included in source).
       No review made (lack time).
   * debian/patches/100_hyphen_used_as_minus_sign.diff
     + Add "\" to "-" in english and fr manpage (as suggested by lintian).
@@ -15,10 +15,10 @@ hping3 (3.a2.ds2-5) unstable; urgency=low
   * debian/watch:
     + Add empty but documented file (to explain why).
   * Bump to debhelper compatibility 7.
-  * Bump Standards-Version to 3.8.2 (, no changes needed ?).
-  * debian/control: change the git repo.
+  * Bump Standards-Version to 3.8.2, no changes needed.
+  * debian/control: change the git repo location.
 
- -- Guillaume Delacour <gui@iroqwa.org>  Mon, 01 Jun 2009 23:48:19 +0000
+ -- Guillaume Delacour <gui@iroqwa.org>  Mon, 01 Jul 2009 23:48:19 +0000
 
 hping3 (3.a2.ds2-4) unstable; urgency=low
 

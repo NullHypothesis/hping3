@@ -3,9 +3,9 @@ Section: net
 Priority: extra
 Maintainer: Guillaume Delacour <gui@iroqwa.org>
 Build-Depends: debhelper (>= 7), libpcap0.8-dev, tcl8.4-dev, quilt (>= 0.40)
-Standards-Version: 3.8.1
+Standards-Version: 3.8.2
 Homepage: http://www.hping.org/
-Vcs-Browser: http://git.debian.org/git/collab-maint/hping3.git
+Vcs-Browser: http://git.debian.org/?p=collab-maint/hping3.git
 Vcs-Git: git://git.debian.org/collab-maint/hping3.git
 
 Package: hping3
