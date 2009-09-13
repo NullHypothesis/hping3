@@ -1,9 +1,8 @@
 hping3 (3.a2.ds2-5) unstable; urgency=low
 
-  * debian/patches/80_ip_id_field.diff: Add description to header.
-  * debian/patches/90_fr_manpage.diff:
+  * debian/patches/080_ip_id_field.diff: Add description to header.
+  * debian/patches/090_fr_manpage.diff:
     + use hping2 fr manpage for hping3 (already included in source).
-      No review made (lack time).
   * debian/patches/100_hyphen_used_as_minus_sign.diff
     + Add "\" to "-" in english and fr manpage (as suggested by lintian).
   * debian/patches/110_dontfrag_offbyone.diff:
@@ -12,20 +11,23 @@ hping3 (3.a2.ds2-5) unstable; urgency=low
   * debian/patches/120_rtt_icmp_unreachable.diff:
     Add RTT handling for ICMP destination unreachable packets
     (Closes: #248273), thanks to Baruch Even.
+  * debian/patches
   * debian/watch:
     + Add empty but documented file (to explain why).
   * Bump to debhelper compatibility 7.
-  * Bump Standards-Version to 3.8.2, no changes needed.
+  * Bump Standards-Version to 3.8.3, no changes needed.
   * debian/control: change the git repo location.
+  * debian/compat: Bump to 7 (replace dh_clean -k by dh_prep in install rule)
+  * debian/copyright: Adjust licences on BSD style sources.
 
- -- Guillaume Delacour <gui@iroqwa.org>  Mon, 01 Jul 2009 23:48:19 +0000
+ -- Guillaume Delacour <gui@iroqwa.org>  Fri, 04 Sep 2009 23:48:19 +0000
 
 hping3 (3.a2.ds2-4) unstable; urgency=low
 
   * New maintainer (Closes: #522830)
   * debian/control:
     + Bump Standards-Version to 3.8.1, no changes needed.
-  * debian/copyright: 
+  * debian/copyright:
     + /usr/share/common-licenses -> /usr/share/common-licenses/GPL-2
     + Change download url (previous http://wiki.hping.org/101 returns 404)
   * debian/patches/80_ip_id_field.diff:

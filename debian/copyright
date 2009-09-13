@@ -7,16 +7,23 @@ It was downloaded from http://www.hping.org/download.php
 
 Copyright:
 
-hping3 is Copyright (C) 1998, 2004 by Salvatore Sanfilippo.
+	hping3 is Copyright (C) 1998, 2004 by Salvatore Sanfilippo.
 
-Upstream Author: Salvatore Sanfilippo <antirez@invece.org>
+Upstream Author:
+
+	Salvatore Sanfilippo <antirez@invece.org>
 
 License:
 
-display_ipopt.c : from ping, BSD style license
-libpcap library : BSD style license
+	GPL-2
 
-for more information see the upper part of this files.
+	However, some files are licenced under other licences:
+
+	display_ipopt.c : from ping, BSD style license (4-clause BSD)
+	libpcap library : BSD style license (3-clause BSD)
+
+	On Debian systems, the complete text of the Modified BSD Licence
+	can be found in `/usr/share/common-licenses/BSD'.
 
 This package is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
