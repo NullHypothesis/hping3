@@ -1,0 +1,147 @@
+Fix FTBFS: GNU/kFreeBSD not in arch list(s)
+Index: hping3-3.a2.ds2/getifname.c
+===================================================================
+--- hping3-3.a2.ds2.orig/getifname.c	2009-09-19 18:48:10.000000000 +0200
++++ hping3-3.a2.ds2/getifname.c	2009-09-19 18:48:10.000000000 +0200
+@@ -19,7 +19,7 @@
+ #include <stdlib.h>
+ 
+ #if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || \
+-    defined(__bsdi__) || defined(__APPLE__)
++    defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+ #include <ifaddrs.h>
+ #include <net/route.h>
+ #endif /* defined(__*BSD__) */
+@@ -29,7 +29,7 @@
+ 
+ #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__) && \
+     !defined(__linux__) && !defined(__sun__) && !defined(__bsdi__) && \
+-    !defined(__APPLE__)
++    !defined(__APPLE__) && !defined(__FreeBSD_kernel__)
+ #error Sorry, interface code not implemented.
+ #endif
+ 
+@@ -174,7 +174,7 @@
+ }
+ 
+ #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
+-      defined(__bsdi__) || defined(__APPLE__)
++      defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+ 
+ /* return interface informations :
+    - from the specified (-I) interface
+Index: hping3-3.a2.ds2/ars.c
+===================================================================
+--- hping3-3.a2.ds2.orig/ars.c	2009-09-19 18:48:10.000000000 +0200
++++ hping3-3.a2.ds2/ars.c	2009-09-19 18:48:10.000000000 +0200
+@@ -914,7 +914,8 @@
+ 		return -ARS_INVALID;
+ 	}
+ 	ip = (struct ars_iphdr*) packet;
+-#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI
++#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI || \
++	defined OSTYPE_GNUKFREEBSD
+ 	ip->tot_len = ntohs(ip->tot_len);
+ 	ip->frag_off = ntohs(ip->frag_off);
+ #endif
+Index: hping3-3.a2.ds2/sendip.c
+===================================================================
+--- hping3-3.a2.ds2.orig/sendip.c	2009-09-19 18:47:49.000000000 +0200
++++ hping3-3.a2.ds2/sendip.c	2009-09-19 18:48:10.000000000 +0200
+@@ -48,7 +48,8 @@
+ 	ip->ihl		= (IPHDR_SIZE + optlen + 3) >> 2;
+ 	ip->tos		= ip_tos;
+ 
+-#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI
++#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI || \
++	defined OSTYPE_GNUKFREEBSD
+ /* FreeBSD */
+ /* NetBSD */
+ 	ip->tot_len	= packetsize;
+Index: hping3-3.a2.ds2/configure
+===================================================================
+--- hping3-3.a2.ds2.orig/configure	2009-09-19 18:48:09.000000000 +0200
++++ hping3-3.a2.ds2/configure	2009-09-19 18:51:40.000000000 +0200
+@@ -48,6 +48,13 @@
+ 	CONFIGOSTYPE=BSDI
+ fi
+ 
++# for GNU/kFreeBSD, change GNU/KFREEBSD to GNUKFREEBSD, to
++# not including '/'
++if [ $CONFIGOSTYPE = "GNU/KFREEBSD" ]
++then
++	CONFIGOSTYPE=GNUKFREEBSD
++fi
++
+ case $CONFIGOSTYPE in
+   SUNOS)
+     SOLARISLIB="-lsocket -lresolv -lnsl"
+Index: hping3-3.a2.ds2/libpcap_stuff.c
+===================================================================
+--- hping3-3.a2.ds2.orig/libpcap_stuff.c	2009-09-19 18:48:08.000000000 +0200
++++ hping3-3.a2.ds2/libpcap_stuff.c	2009-09-19 18:48:10.000000000 +0200
+@@ -34,7 +34,8 @@
+ 		printf("[open_pcap] pcap_open_live: %s\n", errbuf);
+ 		return -1;
+ 	}
+-#if (!defined OSTYPE_LINUX) && (!defined __sun__)
++#if (!defined OSTYPE_LINUX) && (!defined __sun__) && \
++	(!defined OSTYPE_GNUKFREEBSD)
+ 	/* Return the packets to userspace as fast as possible */
+ 	if (ioctl(pcap_fileno(pcapfp), BIOCIMMEDIATE, &on) == -1)
+ 		perror("[open_pcap] ioctl(... BIOCIMMEDIATE ...)");
+Index: hping3-3.a2.ds2/script.c
+===================================================================
+--- hping3-3.a2.ds2.orig/script.c	2009-09-19 18:48:08.000000000 +0200
++++ hping3-3.a2.ds2/script.c	2009-09-19 18:48:10.000000000 +0200
+@@ -66,7 +66,8 @@
+ static struct recv_handler *HpingRecvGetHandler(struct recv_handler *ra, int len, char *ifname, Tcl_Interp *interp)
+ {
+ 	int i;
+-	#if (!defined OSTYPE_LINUX) && (!defined __sun__)
++	#if (!defined OSTYPE_LINUX) && (!defined __sun__) && \
++		(!defined OSTYPE_GNUKFREEBSD)
+ 	int on = 1;
+ 	#endif
+ 
+@@ -87,7 +88,8 @@
+ 	ra[i].rh_pcapfp = pcap_open_live(ifname, 99999, 0, 1, ra[i].rh_pcap_errbuf);
+ 	if (ra[i].rh_pcapfp == NULL)
+ 		return NULL;
+-	#if (!defined OSTYPE_LINUX) && (!defined __sun__)
++	#if (!defined OSTYPE_LINUX) && (!defined __sun__) && \
++		(!defined OSTYPE_GNUKFREEBSD)
+ 	/* Return the packets to userspace as fast as possible */
+ 	if (ioctl(pcap_fileno(ra[i].rh_pcapfp), BIOCIMMEDIATE, &on) == -1) {
+ 		/* XXX non-critical error */
+Index: hping3-3.a2.ds2/interface.c
+===================================================================
+--- hping3-3.a2.ds2.orig/interface.c	2009-09-19 18:47:50.000000000 +0200
++++ hping3-3.a2.ds2/interface.c	2009-09-19 18:48:10.000000000 +0200
+@@ -28,7 +28,7 @@
+ #include <unistd.h>		/* close */
+ 
+ #if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || \
+-    defined(__bsdi__) || defined(__APPLE__)
++    defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+ #include <stdlib.h>
+ #include <ifaddrs.h>
+ #include <net/route.h>
+@@ -37,7 +37,7 @@
+ 
+ #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__) && \
+     !defined(__linux__) && !defined(__sun__) && !defined(__bsdi__) && \
+-    !defined(__APPLE__)
++    !defined(__APPLE__) && !defined(__FreeBSD_kernel__)
+ #error Sorry, interface code not implemented.
+ #endif
+ 
+@@ -187,7 +187,7 @@
+ #endif
+ 
+ #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
+-      defined(__bsdi__) || defined(__APPLE__)
++      defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+ /* I wish getifaddrs() API on linux... -- SS */
+ int hping_get_interfaces(struct hpingif *hif, int ilen)
+ {

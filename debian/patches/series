@@ -11,3 +11,6 @@
 110_dontfrag_offbyone.diff
 120_rtt_icmp_unreachable.diff
 130_spelling_error_in_binary.diff
+140_data_size_udp.diff
+150_gnu_kfreebsd.diff
+160_tcp_mss.diff
