@@ -9,6 +9,7 @@
 
 #if 	defined(__i386__) \
 	|| defined(__alpha__) \
+	|| defined(__x86_64__) \
 	|| (defined(__mips__) && (defined(MIPSEL) || defined (__MIPSEL__)))
 #define BYTE_ORDER_LITTLE_ENDIAN
 #elif 	defined(__mc68000__) \
