@@ -221,8 +221,6 @@ void log_traceroute(void *packet, int size, int icmp_code)
 	if (retval != -1)
 		printf("hop=%d hoprtt=%.1f ms\n",
 				src_ttl, rtt);
-	if (!opt_tr_keep_ttl)
-		src_ttl++;
 }
 
 int recv_icmp(void *packet, size_t size)

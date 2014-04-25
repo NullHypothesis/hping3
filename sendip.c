@@ -86,6 +86,7 @@ void send_ip (char* src, char *dst, char *data, unsigned int datalen,
 #endif
 
 	ip->ttl		= src_ttl;
+	if (opt_traceroute && !opt_tr_keep_ttl)	src_ttl++;
 	if (opt_rawipmode)	ip->protocol = raw_ip_protocol;
 	else if	(opt_icmpmode)	ip->protocol = 1;	/* icmp */
 	else if (opt_udpmode)	ip->protocol = 17;	/* udp  */
